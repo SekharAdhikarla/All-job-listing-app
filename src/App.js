@@ -1,25 +1,48 @@
-import logo from './logo.svg';
-import './App.css';
+// App.js
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import Jobs from './components/Jobs';
+import Bookmarks from './components/Bookmarks';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div>
+        {/* Bottom Navigation */}
+        <nav style={styles.nav}>
+          <Link to="/jobs" style={styles.navLink}>Jobs</Link>
+          <Link to="/bookmarks" style={styles.navLink}>Bookmarks</Link>
+        </nav>
+        
+        {/* Routes */}
+        <Routes>
+          <Route path="/jobs" element={<Jobs />} />
+          <Route path="/bookmarks" element={<Bookmarks />} />
+        </Routes>
+      </div>
+    </Router>
   );
-}
+};
+
+const styles = {
+  nav: {
+    position: 'fixed',
+    bottom: 0,
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'space-around',
+    backgroundColor: 'lightgreen',
+    padding: '10px 0',
+    borderTop: '1px solid #ccc',
+    
+  },
+  navLink: {
+    textDecoration: 'none',
+    padding: '10px 20px',
+    fontSize: '18px',
+    
+    
+  }
+};
 
 export default App;
